@@ -1,7 +1,14 @@
 import * as THREE from 'three';
+import osc from 'osc';
 
 var camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
 var geometry: THREE.BoxGeometry , material: THREE.MeshNormalMaterial, mesh: THREE.Mesh<any, any>;
+
+var oscPort = new osc.WebSocketPort({
+    url: "ws://localhost:8081", // URL to your Web Socket server.
+    metadata: true
+});
+
 
 init();
 animate();
