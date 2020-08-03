@@ -5,8 +5,9 @@ var osc = require("osc"),
  
 // Create an Express server app
 // and serve up a directory of static files.
+let portNum = 8081;
 var app = express(),
-    server = app.listen(8081);
+    server = app.listen(portNum);
  
 app.use("/", express.static(__dirname + "/static"));
  
@@ -21,7 +22,9 @@ wss.on("connection", function (socket) {
         socket: socket,
         metadata: true
     });
- 
+
+    console.log("WebSocket connection made on port", portNum)
+
     socketPort.on("message", function (oscMsg) {
         console.log("An OSC Message was received!", oscMsg);
     });

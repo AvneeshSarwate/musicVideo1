@@ -1,14 +1,15 @@
 import * as THREE from 'three';
-import WebSocketPort from 'osc';
+import * as osc from '../node_modules/osc/dist/osc-browser';
 
 var camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
 var geometry: THREE.BoxGeometry , material: THREE.MeshNormalMaterial, mesh: THREE.Mesh<any, any>;
 
-var oscPort = new WebSocketPort({
+var oscPort = new osc.WebSocketPort({
     url: "ws://localhost:8081", // URL to your Web Socket server.
     metadata: true
 });
 
+oscPort.on('/testMsg', () => console.log('got osc message'))
 
 init();
 animate();
