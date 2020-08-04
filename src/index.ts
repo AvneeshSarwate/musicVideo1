@@ -8,8 +8,8 @@ var oscPort = new osc.WebSocketPort({
     url: "ws://localhost:8081", // URL to your Web Socket server.
     metadata: true
 });
-
-oscPort.on('/testMsg', () => console.log('got osc message'))
+oscPort.open();
+oscPort.on('message', (msg: any) => console.log('got osc message', msg));
 
 init();
 animate();
